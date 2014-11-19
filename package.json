@@ -9,6 +9,8 @@
   "author": "Dan Murphy",
   "license": "MIT",
   "dependencies": {
-    "express": "^4.10.2"
+    "express": "^4.10.2",
+    "ejs": "^1.0.0",
+    "forms": "^1.0.0"
   }
 }
