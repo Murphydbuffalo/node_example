@@ -25,9 +25,14 @@ app.route('/')
 
   .post(function(request, response){
     console.log('POST /');
+    var content = request.body.content;
 
-    app.get('queue').push(request.body.content);
-    response.render('index', { queue: app.get('queue'), done: app.get('done') });
+    if(content.length > 0) {
+      app.get('queue').push(content);
+      response.render('index', { queue: app.get('queue'), done: app.get('done') });
+    } else {
+      console.log('No blank fields please.');
+    }
   });
 
 app.route('/done')
