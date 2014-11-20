@@ -3,6 +3,7 @@
 var express = require('express');
 var app = express();
 var bodyParser = require('body-parser');
+var controller = require('./controllers/home_controller.js');
 
 //Parse request body as JSON 
 app.use(bodyParser.json());
