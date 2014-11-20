@@ -18,22 +18,23 @@ app.set('queue', []);
 app.route('/')
   .get(function(request, response){
     console.log('GET /');
+
     response.render('index', { queue: app.get('queue') });
   })
 
   .post(function(request, response){
     console.log('POST /');
-    var content = request.body.content;
-    console.log(content);
-    app.get('queue').push(content);
-    console.log(app.get('queue'));
-    response.render('index', { queue: app.get('queue') });
-  })
 
-  .delete(function(request, response){
-    console.log('DELETE /');
-    var queue = app.get('queue');
-    response.render('index', { queue: queue.shift() });
+    app.get('queue').push(request.body.content);
+    response.render('index', { queue: app.get('queue') });
+  });
+
+app.route('/delete')
+  .post(function(request, response){
+    console.log('POST /delete');
+
+    app.get('queue').shift();
+    response.render('index', { queue: app.get('queue') });
   });
 
 var server = app.listen(8080, function(){
