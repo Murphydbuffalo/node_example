@@ -1,3 +1,19 @@
-<div class="index">
-  <h1>Test Test Test</h1>
+<div class='index'>
+  <div class='title'>
+    <h1>Kitewheel To-Do's</h1>
+  </div>
+  
+  <div class='content'>
+    <% if(queue.length > 0) { %>
+      <p><%= queue[0] %></p>
+    <% } else { %>
+      <p> What do you need to get done today? </p>
+    <% } %>
+  </div>
+
+  <div class="form">
+    <%- include form.ejs %>
+  </div>
+
+  <div class="delete"></div>
 </div>
