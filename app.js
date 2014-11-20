@@ -14,27 +14,28 @@ app.use(bodyParser.urlencoded({
 app.set('views', './views');
 app.set('view engine', 'ejs');
 app.set('queue', []);
+app.set('done', []);
 
 app.route('/')
   .get(function(request, response){
     console.log('GET /');
 
-    response.render('index', { queue: app.get('queue') });
+    response.render('index', { queue: app.get('queue'), done: app.get('done') });
   })
 
   .post(function(request, response){
     console.log('POST /');
 
     app.get('queue').push(request.body.content);
-    response.render('index', { queue: app.get('queue') });
+    response.render('index', { queue: app.get('queue'), done: app.get('done') });
   });
 
-app.route('/delete')
+app.route('/done')
   .post(function(request, response){
-    console.log('POST /delete');
+    console.log('POST /done');
 
-    app.get('queue').shift();
-    response.render('index', { queue: app.get('queue') });
+    app.get('done').push(app.get('queue').shift());
+    response.render('index', { queue: app.get('queue'), done: app.get('done') });
   });
 
 var server = app.listen(8080, function(){

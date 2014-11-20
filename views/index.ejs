@@ -1,11 +1,15 @@
 <div class='index'>
   <div class='title'>
-    <h1>Kitewheel To-Do's</h1>
+    <h1>Kitewheel To-do's</h1>
   </div>
   
-  <div class='content'>
+  <div class='to-do'>
+    <h2>What's next?</h2>
     <% if(queue.length > 0) { %>
-      <p><%= queue[0] %></p>
+      <p>
+        <%= queue[0] %>  
+        <div class="delete"><%- include done.ejs %></div>
+      </p>
     <% } else { %>
       <p> What do you need to get done today? </p>
     <% } %>
@@ -15,7 +19,13 @@
     <%- include form.ejs %>
   </div>
 
-  <div class="delete">
-    <%- include delete.ejs %>
+  <div class="done">
+    <ul>
+      <!-- Don't calculate done.length every time through the loop -->
+      <% var length = done.length %>
+      <% for(var i = 0; i < length; i++) { %>
+        <li><%= done[i] %></li>
+      <% } %>
+    </ul>
   </div>
 </div>
