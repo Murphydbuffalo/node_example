@@ -21,12 +21,15 @@
 
   <div class="done">
     <h2>Done</h2>
-    <ul>
-      <!-- Don't calculate done.length every time through the loop -->
-      <% var length = done.length %>
-      <% for(var i = 0; i < length; i++) { %>
-        <li><%= done[i] %></li>
-      <% } %>
-    </ul>
+    <% var length = done.length %>
+    <% if(length > 0) { %>
+      <ul>
+        <% for(var i = 0; i < length; i++) { %>
+          <li><%= done[i] %></li>
+        <% } %>
+      </ul>
+    <% } else { %>
+      <p>Nothing done yet.</p>
+    <% } %>
   </div>
 </div>
